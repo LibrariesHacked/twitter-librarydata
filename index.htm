@@ -18,15 +18,23 @@
 <body>
     <div id="main" class="container main">
         <div class="container">
+            <h2>Libraries on Twitter</h2>
+            <div class="form-group">
+                <label for="sel-librarytype">Choose library type</label>
+                <select class="form-control" id="sel-librarytype">
+                    <option value="">All</option>
+                </select>
+            </div>
             <table id="tbl-twitter" class="table"></table>
         </div>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/core-js/client/core.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="node_modules/moment/min/moment.min.js"></script>
-    <script src="node_modules/twitter-text/twitter-text.js"></script>
+    <script src="js/twitter-text-2.0.2.js"></script>
     <script src="node_modules/datatables.net/js/jquery.dataTables.js"></script>
     <script src="node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
     <script src="node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"></script>

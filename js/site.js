@@ -27,8 +27,15 @@ $(function () {
         }
     };
 
+    $.each(Object.keys(library_types), function (i, key) {
+        $('#sel-librarytype').append($('<option>', {
+            value: library_types[key].name,
+            text: library_types[key].name
+        }));
+    });
+
     twitterlibraries.loadLists(function () {
-        $('#tbl-twitter').dataTable(
+        var libtable = $('#tbl-twitter').DataTable(
             {
                 processing: true,
                 responsive: true,
@@ -37,7 +44,7 @@ $(function () {
                 deferRender: true,
                 data: twitterlibraries.lists,
                 buttons: [
-                    'copy', 'print', 'excel', 'pdf'
+                    'copy', 'excel'
                 ],
                 columns: [
                     {
@@ -52,9 +59,23 @@ $(function () {
                     { title: "Followers" },
                     { title: "Tweets" },
                     { title: "Likes" },
-                    { title: "Joined" },
-                    { title: "Description" }
+                    {
+                        title: "Joined",
+                        render: function (data, type, row) {
+                            return moment(data, 'ddd MMM DD hh:mm:ss +0000 YYYY').format('Do MMMM YYYY');
+                        }
+                    },
+                    {
+                        title: "Description",
+                        render: function (data, type, row) {
+                            return twttr.txt.autoLink(twttr.txt.htmlEscape(data));
+                        }
+                    }
                 ]
             });
+
+        $('#sel-librarytype').on('change', function () {
+            libtable.column(0).search(this.value).draw();
+        });
     });
 });

@@ -9,7 +9,7 @@ var twitterlibraries = {
                             list.listname,
                             member.name,
                             member.location,
-                            member.following_count || 0,
+                            member.friends_count || 0,
                             member.followers_count || 0,
                             member.statuses_count || 0,
                             member.favourites_count || 0,
