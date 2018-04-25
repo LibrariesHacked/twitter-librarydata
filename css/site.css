@@ -6,3 +6,7 @@ html, body {
 .table-responsive {
     overflow-x: hidden;
 }
+
+.main {
+    margin-top: 10px;
+}

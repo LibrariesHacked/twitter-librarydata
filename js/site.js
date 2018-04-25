@@ -7,9 +7,6 @@ $(function () {
         'non-uk-libraries': {
             'name': 'Non-UK Libraries'
         },
-        'ox-cam-libraries': {
-            'name': 'Oxford and Cambridge Libraries'
-        },
         'uk-public-libraries': {
             'name': 'UK Public Libraries'
         },

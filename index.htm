@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="Libraries on Twitter #LibraryData">
-    <meta name="author" content="Libraries Hacked">
-    <title>twitter | #librarydata</title>
-    <link href="node_modules/bootswatch/dist/materia/bootstrap.min.css" rel="stylesheet" />
+    <meta name="author" content="Sarah H Lib">
+    <title>twitter | librarydata</title>
     <link href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" />
     <link href="node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
@@ -16,44 +15,15 @@
     <link href="css/site.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarColor03" aria-label="Toggle navigation" type="button" data-target="#navbarColor03" data-toggle="collapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor03">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
+    <div class="main container">
+        <h1>Libraries on Twitter</h1>
+        <div class="form-group">
+            <label for="sel-librarytype">Choose library type</label>
+            <select class="form-control" id="sel-librarytype">
+                <option value="">All</option>
+            </select>
         </div>
-    </nav>
-    <div id="main" class="container main">
-        <div class="container">
-
-            <div class="form-group">
-                <label for="sel-librarytype">Choose library type</label>
-                <select class="form-control" id="sel-librarytype">
-                    <option value="">All</option>
-                </select>
-            </div>
-            <table id="tbl-twitter" class="table"></table>
-        </div>
+        <table id="tbl-twitter" class="table"></table>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/core-js/client/core.min.js"></script>
