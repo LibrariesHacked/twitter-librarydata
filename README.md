@@ -1,2 +1,4 @@
-# twitter-librarydata
-Displaying UK library twitter accounts from SarahHLib library lists
+# Twitter
+
+Displaying UK library twitter accounts from SarahHLib library lists.
+
