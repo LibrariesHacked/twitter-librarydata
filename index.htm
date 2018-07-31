@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="Libraries on Twitter #LibraryData">
     <meta name="author" content="Sarah H Lib">
-    <title>twitter | librarydata</title>
+    <title>twitter | #librarydata</title>
     <link href="node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" />
     <link href="node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
@@ -25,7 +25,9 @@
             <select class="form-control" id="sel-librarytype"></select>
         </div>
         <hr />
-        <i id="i-loading" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        <div id="div_loading" class="row">
+            <p>Loading data...</p>
+        </div>
         <div class="row">
             <div class="col-lg-4">
                 <canvas id="cht_mentions" height="200"></canvas>

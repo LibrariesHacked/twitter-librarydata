@@ -45,8 +45,8 @@ $(function () {
 
     twitterlibraries.loadLists(function () {
         // Set up hashtags bar chart
-        var ctx_bar = document.getElementById('cht_hashtags').getContext('2d');
-        var bar_hashtags = new Chart(ctx_bar, {
+        var ctx_bar_hashtags = document.getElementById('cht_hashtags').getContext('2d');
+        var bar_hashtags = new Chart(ctx_bar_hashtags, {
             type: 'bar',
             data: {
                 labels: [],
@@ -115,8 +115,8 @@ $(function () {
         });
 
         // Set up mentions bar chart
-        var ctx_bar = document.getElementById('cht_mentions').getContext('2d');
-        var bar_mentions = new Chart(ctx_bar, {
+        var ctx_bar_mentions = document.getElementById('cht_mentions').getContext('2d');
+        var bar_mentions = new Chart(ctx_bar_mentions, {
             type: 'bar',
             data: {
                 labels: [],
@@ -185,8 +185,8 @@ $(function () {
         });
 
         // Set up monthly line chart
-        var ctx = document.getElementById('cht_joined').getContext('2d');
-        var line_joined = new Chart(ctx, {
+        var ctx_line_joined = document.getElementById('cht_joined').getContext('2d');
+        var line_joined = new Chart(ctx_line_joined, {
             type: 'line',
             data: {
                 labels: [],
@@ -260,6 +260,13 @@ $(function () {
             });
             line_joined.update();
         };
+        
+        jQuery.fn.dataTableExt.oSort["customdate-desc"] = function (x, y) {
+            return moment(x).isAfter(moment(y));
+        };
+        jQuery.fn.dataTableExt.oSort["customdate-asc"] = function (x, y) {
+            return moment(x).isAfter(moment(y));
+        }
 
         var libtable = $('#tbl-twitter').DataTable(
             {
@@ -286,6 +293,7 @@ $(function () {
                     { title: "Likes" },
                     {
                         title: "Joined",
+                        sType: "customdate",
                         render: function (data, type, row) {
                             return moment(data, 'ddd MMM DD hh:mm:ss +0000 YYYY').format('Do MMMM YYYY');
                         }
@@ -298,6 +306,7 @@ $(function () {
                     },
                     {
                         title: "Last tweeted",
+                        sType: "customdate",
                         render: function (data, type, row) {
                             return moment(data, 'ddd MMM DD hh:mm:ss +0000 YYYY').format('Do MMMM YYYY');
                         }
@@ -310,6 +319,10 @@ $(function () {
                     }
                 ]
             });
+            
+        libtable.on('init', function () {
+            $('#div_loading').hide();
+        } );
 
         var setList = function (listname) {
             libtable.column(0).search('^' + listname + '$', true, false).draw();
@@ -334,6 +347,7 @@ $(function () {
             setHashtags(this.value);
             setMentions(this.value);
             setJoined(this.value);
+            
         });
     });
 });
