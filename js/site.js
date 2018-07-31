@@ -83,8 +83,8 @@ $(function () {
                     xAxes: [{
                         ticks: {
                             callback: function (value) {
-                                if (value.length > 7) {
-                                    return value.substr(0, 7) + '...';
+                                if (value.length > 8) {
+                                    return value.substr(0, 8) + '...';
                                 } else {
                                     return value
                                 }
@@ -142,7 +142,7 @@ $(function () {
             options: {
                 title: {
                     display: true,
-                    text: 'Trending Mentions'
+                    text: 'Trending User Mentions'
                 },
                 scales: {
                     yAxes: [{
@@ -153,8 +153,8 @@ $(function () {
                     xAxes: [{
                         ticks: {
                             callback: function (value) {
-                                if (value.length > 7) {
-                                    return value.substr(0, 7) + '...';
+                                if (value.length > 8) {
+                                    return value.substr(0, 8) + '...';
                                 } else {
                                     return value
                                 }
@@ -202,7 +202,7 @@ $(function () {
                 },
                 title: {
                     display: true,
-                    text: 'Twitter Signup'
+                    text: 'Monthly Twitter Signups'
                 },
                 legend: {
                     display: false
@@ -262,13 +262,17 @@ $(function () {
         };
         
         jQuery.fn.dataTableExt.oSort["customdate-desc"] = function (x, y) {
-            return moment(x).isAfter(moment(y));
+            return moment(x, 'Do MMMM YYYY').isAfter(moment(y, 'Do MMMM YYYY'));
         };
         jQuery.fn.dataTableExt.oSort["customdate-asc"] = function (x, y) {
-            return moment(x).isAfter(moment(y));
+            return moment(x, 'Do MMMM YYYY').isBefore(moment(y, 'Do MMMM YYYY'));
         }
 
-        var libtable = $('#tbl-twitter').DataTable(
+        var libtable = $('#tbl-twitter')
+            .on('init.dt', function () {
+                $('#div_loading').hide();
+            })
+            .DataTable(
             {
                 processing: true,
                 responsive: true,
@@ -319,10 +323,6 @@ $(function () {
                     }
                 ]
             });
-            
-        libtable.on('init', function () {
-            $('#div_loading').hide();
-        } );
 
         var setList = function (listname) {
             libtable.column(0).search('^' + listname + '$', true, false).draw();
