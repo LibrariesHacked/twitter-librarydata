@@ -1,28 +1,28 @@
 $(function () {
 
     var library_types = {
-        'uk-libraries': {
+        '1': {
             'name': 'UK Libraries'
         },
-        'non-uk-libraries': {
+        '2': {
             'name': 'Non-UK Libraries'
         },
-        'uk-sch-fe-lib': {
+        '3': {
             'name': 'UK School and FE Libraries'
         },
-        'other-libraries-uk': {
+        '4': {
             'name': 'Other UK Libraries'
         },
-        'national-libraries': {
+        '5': {
             'name': 'National Libraries'
         },
-        'uk-public-libraries': {
+        '6': {
             'name': 'UK Public Libraries'
         },
-        'uk-academic-libraries': {
+        '7': {
             'name': 'UK Academic Libraries'
         },
-        'uk-med-libraries': {
+        '8': {
             'name': 'UK Medical Libraries'
         }
     };
@@ -83,8 +83,8 @@ $(function () {
                     xAxes: [{
                         ticks: {
                             callback: function (value) {
-                                if (value.length > 8) {
-                                    return value.substr(0, 8) + '...';
+                                if (value.length > 7) {
+                                    return value.substr(0, 7) + '...';
                                 } else {
                                     return value
                                 }
@@ -110,6 +110,9 @@ $(function () {
                             return data.datasets[0].data[idx];
                         }
                     }
+                },
+                onClick: function (e, activeElements) {
+                    window.open('https://twitter.com/hashtag/' + bar_hashtags.data.labels[activeElements[0]._index], '_blank');
                 }
             }
         });
@@ -153,8 +156,8 @@ $(function () {
                     xAxes: [{
                         ticks: {
                             callback: function (value) {
-                                if (value.length > 8) {
-                                    return value.substr(0, 8) + '...';
+                                if (value.length > 7) {
+                                    return value.substr(0, 7) + '...';
                                 } else {
                                     return value
                                 }
@@ -180,6 +183,9 @@ $(function () {
                             return data.datasets[0].data[idx];
                         }
                     }
+                },
+                onClick: function (e, activeElements) {
+                    window.open('https://twitter.com/' + bar_mentions.data.labels[activeElements[0]._index], '_blank');
                 }
             }
         });
@@ -202,7 +208,7 @@ $(function () {
                 },
                 title: {
                     display: true,
-                    text: 'Monthly Twitter Signups'
+                    text: 'Twitter signups per month'
                 },
                 legend: {
                     display: false
@@ -242,10 +248,10 @@ $(function () {
             bar_mentions.update();
         };
 
-        var setJoined = function (list) {
+        var setJoined = function (id) {
             line_joined.data.datasets = [];
 
-            line_joined.data.labels = $.map(Object.keys(twitterlibraries.month_counts[list]), function (d, i) {
+            line_joined.data.labels = $.map(Object.keys(twitterlibraries.month_counts[id]), function (d, i) {
                 return moment(d, 'YYYYMM').format('MMM YY')
             });
             line_joined.data.datasets.push({
@@ -253,14 +259,14 @@ $(function () {
                 borderColor: [border_colours[1]],
                 borderWidth: 1,
                 label: '',
-                data: Object.keys(twitterlibraries.month_counts[list]).map(function (mth, y) {
-                    return twitterlibraries.month_counts[list][mth];
+                data: Object.keys(twitterlibraries.month_counts[id]).map(function (mth, y) {
+                    return twitterlibraries.month_counts[id][mth];
                 }),
                 pointRadius: 0
             });
             line_joined.update();
         };
-        
+
         jQuery.fn.dataTableExt.oSort["customdate-desc"] = function (x, y) {
             return moment(x, 'Do MMMM YYYY').isAfter(moment(y, 'Do MMMM YYYY'));
         };
@@ -273,67 +279,67 @@ $(function () {
                 $('#div_loading').hide();
             })
             .DataTable(
-            {
-                processing: true,
-                responsive: true,
-                dom: 'Bfrtip',
-                info: false,
-                deferRender: true,
-                data: twitterlibraries.lists,
-                buttons: ['copy', 'excel', 'pdf'],
-                columns: [
-                    {
-                        title: "Type",
-                        render: function (data, type, row) {
-                            return data;
+                {
+                    processing: true,
+                    responsive: true,
+                    dom: 'Bfrtip',
+                    info: false,
+                    deferRender: true,
+                    data: twitterlibraries.lists,
+                    buttons: ['copyHtml5'],
+                    columns: [
+                        {
+                            title: "Type",
+                            render: function (data, type, row) {
+                                return data;
+                            },
+                            visible: false,
                         },
-                        visible: false,
-                    },
-                    { title: "Name" },
-                    { title: "Location" },
-                    { title: "Following" },
-                    { title: "Followers" },
-                    { title: "Tweets" },
-                    { title: "Likes" },
-                    {
-                        title: "Joined",
-                        sType: "customdate",
-                        render: function (data, type, row) {
-                            return moment(data, 'ddd MMM DD hh:mm:ss +0000 YYYY').format('Do MMMM YYYY');
+                        { title: "Name" },
+                        { title: "Location" },
+                        { title: "Following" },
+                        { title: "Followers" },
+                        { title: "Tweets" },
+                        { title: "Likes" },
+                        {
+                            title: "Joined",
+                            sType: "customdate",
+                            render: function (data, type, row) {
+                                return moment(data, 'YYYYMMDD').format('Do MMMM YYYY');
+                            }
+                        },
+                        {
+                            title: "Description",
+                            render: function (data, type, row) {
+                                return twttr.txt.autoLink(twttr.txt.htmlEscape(data));
+                            }
+                        },
+                        {
+                            title: "Last tweeted",
+                            sType: "customdate",
+                            render: function (data, type, row) {
+                                return moment(data, 'YYYYMMDD hh:mm').format('Do MMMM YYYY');
+                            }
+                        },
+                        {
+                            title: "Last tweet",
+                            render: function (data, type, row) {
+                                return twttr.txt.autoLink(twttr.txt.htmlEscape(data));
+                            }
                         }
-                    },
-                    {
-                        title: "Description",
-                        render: function (data, type, row) {
-                            return twttr.txt.autoLink(twttr.txt.htmlEscape(data));
-                        }
-                    },
-                    {
-                        title: "Last tweeted",
-                        sType: "customdate",
-                        render: function (data, type, row) {
-                            return moment(data, 'ddd MMM DD hh:mm:ss +0000 YYYY').format('Do MMMM YYYY');
-                        }
-                    },
-                    {
-                        title: "Last tweet",
-                        render: function (data, type, row) {
-                            return twttr.txt.autoLink(twttr.txt.htmlEscape(data));
-                        }
-                    }
-                ]
-            });
+                    ]
+                });
 
-        var setList = function (listname) {
-            libtable.column(0).search('^' + listname + '$', true, false).draw();
+        var setList = function (id) {
+            libtable.column(0).search((id == 'all' ? '' : id)).draw();
         }
 
+        $('#sel-librarytype').append($('<option>', { value: 'all', text: 'All' }));
         $.each(Object.keys(library_types), function (i, key) {
             if (i === 0) {
-                setList(key);
-                setHashtags(key);
-                setMentions(key);
-                setJoined(key);
+                setHashtags('all');
+                setMentions('all');
+                setJoined('all');
             }
             $('#sel-librarytype').append($('<option>', {
                 value: key,
@@ -347,7 +353,7 @@ $(function () {
             setHashtags(this.value);
             setMentions(this.value);
             setJoined(this.value);
-            
+
         });
     });
 });

@@ -27,7 +27,9 @@
     "datatables.net-responsive": "^2.2.3",
     "datatables.net-responsive-bs4": "^2.2.3",
     "jquery": "^3.3.1",
+    "jszip": "^3.1.5",
     "moment": "^2.22.2",
-    "popper.js": "^1.14.3"
+    "pdfmake": "^0.1.37",
+    "popper.js": "^1.14.4"
   }
 }
