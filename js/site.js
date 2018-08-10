@@ -78,6 +78,10 @@ $(function () {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of tweets'
                         }
                     }],
                     xAxes: [{
@@ -90,8 +94,11 @@ $(function () {
                                 }
 
                             }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Hashtag'
                         }
-
                     }]
                 },
                 legend: {
@@ -145,12 +152,16 @@ $(function () {
             options: {
                 title: {
                     display: true,
-                    text: 'Trending User Mentions'
+                    text: 'Trending Mentions'
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of tweets'
                         }
                     }],
                     xAxes: [{
@@ -163,6 +174,10 @@ $(function () {
                                 }
 
                             }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Account name'
                         }
 
                     }]
@@ -203,12 +218,22 @@ $(function () {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of Signups'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
                         }
                     }]
                 },
                 title: {
                     display: true,
-                    text: 'Twitter signups per month'
+                    text: 'Library twitter signups'
                 },
                 legend: {
                     display: false
@@ -286,7 +311,7 @@ $(function () {
                     info: false,
                     deferRender: true,
                     data: twitterlibraries.lists,
-                    buttons: ['copyHtml5'],
+                    buttons: ['copyHtml5', 'csvHtml5', 'excelHtml5'],
                     columns: [
                         {
                             title: "Type",
