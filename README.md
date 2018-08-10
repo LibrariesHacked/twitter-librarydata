@@ -6,9 +6,9 @@ https://twitter.librarydata.uk
 
 ## Testing
 
-Using [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "BrowserStack for Testing"
+[BrowserStack]: https://raw.githubusercontent.com/LibrariesHacked/twitter-librarydata/master/Browserstack-logo%402x.png "BrowserStack for Testing"
 
-https://www.browserstack.com/
+Using https://www.browserstack.com/ for Testing
 
 ## Licence
 
