@@ -6,7 +6,7 @@ https://twitter.librarydata.uk
 
 ## Testing
 
-![BrowserStack]: https://raw.githubusercontent.com/LibrariesHacked/twitter-librarydata/master/Browserstack-logo%402x.png "BrowserStack for Testing"
+![BrowserStack](https://raw.githubusercontent.com/LibrariesHacked/twitter-librarydata/master/Browserstack-logo%402x.png)
 
 Using https://www.browserstack.com/ for Testing
 
