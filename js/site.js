@@ -311,7 +311,22 @@ $(function () {
                     info: false,
                     deferRender: true,
                     data: twitterlibraries.lists,
-                    buttons: ['copyHtml5', 'csvHtml5', 'excelHtml5'],
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            className: 'btn-info'
+
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            className: 'btn-info'
+
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            className: 'btn-info'
+                        }
+                    ],
                     columns: [
                         {
                             title: "Type",
