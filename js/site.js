@@ -24,6 +24,9 @@ $(function () {
         },
         '8': {
             'name': 'UK Medical Libraries'
+        },
+        '9': {
+            'name': 'UK Mobile Libraries'
         }
     };
 
