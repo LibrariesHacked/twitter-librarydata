@@ -1,12 +1,13 @@
-html, body {
-    height: 100%;
-    min-height: 100%;
+html,
+body {
+  height: 100%;
+  min-height: 100%;
 }
 
 .table-responsive {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 .main {
-    padding-top: 50px;
+  padding-top: 50px;
 }
